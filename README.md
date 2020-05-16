@@ -1,5 +1,7 @@
 # Deno and Node.js Sharing module code
 
+`TLDR;` use [.mjs](##mjs-for-the-rescue);
+
 ## Intro
 
 In this repo I documented my short adventure by sharing some code / modules between [Deno](https://deno.land/) and [Node.js](https://nodejs.org/).
@@ -10,7 +12,7 @@ I really like Node.js and use it for some small personal and work related projec
 
 In addition to that I really enjoy coding with [TypeScript](https://www.typescriptlang.org/) and use it pretty heavily since Angular v2.0.
 
-During my experiments I was looking for some easy setup to start writing TypeScript with Node.js, but unfortunately nothing satisfied me, so Deno looked like an ideal tool to try next. 
+During my experiments I was looking for some easy setup to start writing TypeScript with Node.js, but unfortunately nothing satisfied me, so Deno looked like an ideal tool to try next.
 
 ## Adventure
 
@@ -20,13 +22,13 @@ During first weekend after [Deno v 1.0 official release](https://deno.land/v1), 
 - [The Deno Handbook: A TypeScript Runtime Tutorial with Code Examples](https://www.freecodecamp.org/news/the-deno-handbook/)
 - [The Deno Handbook: a concise introduction to Deno 🦕](https://flaviocopes.com/deno/)
 
-And checking few intro [examples](https://deno.land/std/examples) in official repo, [ordering Deno 1.0 hoodie](https://deno.land/v1/hoodie) and successfully submitting my first [PR to Deno](https://github.com/denoland/deno/pull/5467) (:D), I decided to give it a try and rewrite a tiny isolated part of my toy Node.js project using Deno. 
+And checking few intro [examples](https://deno.land/std/examples) in official repo, [ordering Deno 1.0 hoodie](https://deno.land/v1/hoodie) and successfully submitting my first [PR to Deno](https://github.com/denoland/deno/pull/5467) (:D), I decided to give it a try and rewrite a tiny isolated part of my toy Node.js project using Deno.
 
 The code part I was going to rewrite is responsible for generating some (text) files according to config. File system part was not very challenging, as Deno provides standard [FS](https://deno.land/std/fs) API's quite similar to ones we have in Node.js.
 
 More interesting part was to make sure my existing Node.js based app continues to work together with Deno. So I had to find a way to share configuration JavaScript files between Deno and Node.js.
 
-Bellow is simplified and isolated version of code I had initially. 
+Bellow is simplified and isolated version of code I had initially.
 
 ### Initial code
 
@@ -46,7 +48,6 @@ I consume it inside another module (initial/consumer.js):
 const { myConfig } = require("./config");
 
 console.log("myConfig: ", myConfig);
-
 ```
 
 All is fine and works as expected:
@@ -80,10 +81,10 @@ Consume it from Deno (almost) in usual way (note, that we import using '.mjs' fi
 import { myConfig } from "./config.mjs";
 
 console.log("myConfig: ", myConfig);
-
 ```
 
 And we had to modify Node.js version a bit:
+
 - Use async import instead of require.
 - Make function async.
 
@@ -95,7 +96,6 @@ shared/consumer.js:
 
   console.log("myConfig: ", myConfig);
 })();
-
 ```
 
 And it works:
@@ -125,6 +125,4 @@ myConfig:  { key: 'value' }
 - https://nodejs.org/api/esm.html
 - https://medium.com/@giltayar/native-es-modules-in-nodejs-status-and-future-directions-part-i-ee5ea3001f71
 
-
 Note that code was tested using Node.js `v14.0.0` and `Deno 1.0.0`.
-
