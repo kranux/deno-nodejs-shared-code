@@ -95,3 +95,34 @@ shared/consumer.js:
 })();
 
 ```
+
+And it works:
+
+```bash
+$ deno run shared/consumer.ts
+myConfig:  { key: "value" }
+
+$ node shared/consumer.js
+myConfig:  { key: 'value' }
+```
+
+## Why it is not so great?
+
+1. I had to modify existing shared code and consumer code;
+2. I had to use intermediate file format (`.mjs`);
+3. My Node.js code became async, which adds another layer of complexity;
+
+## What's awesome about it?
+
+1. It works and helps me to avoid code duplication;
+2. I was able to learn few new things!
+
+## Resources
+
+- https://deno.land/manual
+- https://nodejs.org/api/esm.html
+- https://medium.com/@giltayar/native-es-modules-in-nodejs-status-and-future-directions-part-i-ee5ea3001f71
+
+
+Note that code was tested using Node.js `v14.0.0` and `Deno 1.0.0`.
+
