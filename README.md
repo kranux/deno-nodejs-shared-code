@@ -4,27 +4,29 @@
 
 In this repo I will document my adventures by trying to share some code / modules between [Deno](https://deno.land/) and [Node.js](https://nodejs.org/).
 
-First of all, I really happy to find out that Deno - new generation server side JavaScript / TypeScript runtime finally reached version 1.0!
+First of all, I am really happy to find out that Deno - new generation server side JavaScript / TypeScript runtime finally reached version 1.0!
 
 I really like Node.js and use it for some small personal and work related projects since [v 0.10.xx](https://nodejs.org/en/download/releases/), which is quite a lot in web years.
 
-And I really enjoy coding with [TypeScript](https://www.typescriptlang.org/) and use it since Angular v2.0.
+And I really enjoy coding with [TypeScript](https://www.typescriptlang.org/) and use it pretty heavily since Angular v2.0.
 
 ## Adventure
 
-During first weekend after Deno v 1.0 official release, I decided to play a bit with it. After reading throw [Deno manual](https://deno.land/manual/introduction) and checking few introductory articles:
+During first weekend after [Deno v 1.0 official release](https://deno.land/v1), I decided to play a bit with it. After reading through [Deno manual](https://deno.land/manual/introduction) and checking few introductory articles:
 
 - [Deno 1.0: What you need to know](https://blog.logrocket.com/deno-1-0-what-you-need-to-know/)
 - [The Deno Handbook: A TypeScript Runtime Tutorial with Code Examples](https://www.freecodecamp.org/news/the-deno-handbook/)
 - [The Deno Handbook: a concise introduction to Deno 🦕](https://flaviocopes.com/deno/)
 
-And checking few intro [examples](https://deno.land/std/examples) in official repo I decided to give it a try and rewrite a tiny isolated part of my toy Node.js project using Deno. 
+And checking few intro [examples](https://deno.land/std/examples) in official repo, [ordering Deno 1.0 hoodie](https://deno.land/v1/hoodie) and successfully submitting my first [PR to Deno](https://github.com/denoland/deno/pull/5467) (:D), I decided to give it a try and rewrite a tiny isolated part of my toy Node.js project using Deno. 
 
-The code part I was going to rewrite is responsible for generating some files according to config. File system part was not very challenging, as Deno provides standard [FS](https://deno.land/std/fs) API's quite similar Node.js.
+The code part I was going to rewrite is responsible for generating some files according to config. File system part was not very challenging, as Deno provides standard [FS](https://deno.land/std/fs) API's quite similar to ones we have in Node.js.
 
 ## A bit more interesting part
 
-More interesting part was to make sure my existing app continues to work together with Deno. So I had to find a way to share configuration files between Deno and Node.js.
+More interesting part was to make sure my existing app continues to work together with Deno. So I had to find a way to share configuration JavaScript files between Deno and Node.js.
+
+Bellow is simplified and isolated version of code I rewrote. 
 
 ### Initial code
 
