@@ -1,4 +1,4 @@
-# Deno and Node.js Sharing module code
+# Deno and Node.js sharing module code
 
 `TLDR;` use [.mjs](#mjs-for-the-rescue);
 
