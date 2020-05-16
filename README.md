@@ -65,7 +65,7 @@ Note that Node.js by default supports CommonJS style modules which are consumed 
 
 ### .mjs for the rescue!
 
-My (not ideal, IMO) solution was to use [.mjs](https://nodejs.org/api/esm.html) module for shared code.(shared/config.mjs):
+My (not ideal, IMO) solution was to use [.mjs](https://nodejs.org/api/esm.html) module for shared code (shared/config.mjs):
 
 ```mjs
 const myConfig = {
